@@ -6,6 +6,7 @@
   "repository": "https://github.com/profertis/profertis",
   "author": "LeoDog896, CoasterFan5, willuhm-js",
   "license": "GPL-v3",
+  "type": "module",
   "private": false,
   "scripts": {
     "build": "tsc",
