@@ -8,7 +8,7 @@
 		// Append -bullseye or -buster to pin to an OS version.
 		// Use -bullseye variants on local on arm64/Apple Silicon.
 		"args": { 
-			"VARIANT": "16-bullseye"
+			"VARIANT": "18-bullseye"
 		}
 	},
 
@@ -16,10 +16,17 @@
 	"customizations": {
 		// Configure properties specific to VS Code.
 		"vscode": {
+			"settings": { 
+				// Enables the project as a Deno project
+				"deno.enable": true,
+				// Enables Deno linting for the project
+				"deno.lint": true
+			},
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
 				"dbaeumer.vscode-eslint",
-				"svelte.svelte-vscode"
+				"svelte.svelte-vscode",
+				"denoland.vscode-deno"
 			]
 		}
 	},
@@ -34,7 +41,6 @@
 	"remoteUser": "node",
 	"features": {
 		"git": "os-provided",
-		"github-cli": "latest",
-		"fish": "latest"
+		"github-cli": "latest"
 	}
 }
