@@ -1,0 +1,1 @@
+surreal export --ns profertis --db profertis -c http://0.0.0.0:8000 ./surreal.sql

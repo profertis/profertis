@@ -11,6 +11,6 @@ app.use(router.allowedMethods());
 
 app.addEventListener(
   "listen",
-  () => console.log("Listening on http://localhost:8080"),
+  () => console.log("API Listening on http://localhost:8080"),
 );
-await app.listen({ port: 8080 });
+app.listen({ port: 8080 });

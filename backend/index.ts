@@ -1,26 +1,19 @@
 import Surreal from "https://deno.land/x/surrealdb@v0.2.0/mod.ts";
-
-interface Location {
-    zipCode: string;
-    city: string;
-    state: string;
-}
-
-interface School {
-    name: string;
-    location: string;
-}
+import "./router.ts"
 
 const db = new Surreal('http://127.0.0.1:8000/rpc', {});
 
 async function main() {
+    console.log("Logging in...")
     await db.signin({
         user: 'root',
         pass: 'root',
     });
+
+    console.log("Logged in to SurrealDB.")
     
     // Select a specific namespace / database
-	await db.use('test', 'test');
+	await db.use('profertis', 'profertis');
 
     // Create a new person with a random id
     let created = await db.create("person", {

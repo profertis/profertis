@@ -1,0 +1,86 @@
+{
+    "version": "2.0.0",
+    "presentation": {
+        "echo": false,
+        "reveal": "always",
+        "focus": false,
+        "panel": "dedicated",
+        "showReuseMessage": true
+    },
+    "tasks": [
+        {
+            "label": "Create terminals",
+            "dependsOn": [
+                "Backend",
+                "Frontend",
+                "Scratchpad",
+                "Database Logs",
+                "Terminal"
+            ],
+            // Mark as the default build task so cmd/ctrl+shift+b will create them
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            // Try start the task on folder open
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Database Logs",
+            "type": "shell",
+            "command": "cd surreal && ./start.sh",
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "group": "Database"
+            }
+        },
+        {
+            "label": "Scratchpad",
+            "type": "shell",
+            "command": "echo \"SurrealDB scratchpad.\" && cd surreal && ./scratchpad.sh",
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "group": "Database"
+            }
+        },
+        {
+            // The name that shows up in terminal tab
+            "label": "Backend",
+            // The task will launch a shell
+            "type": "shell",
+            "command": "cd backend && deno task dev",
+            // Mark as a background task to avoid the spinner animation on the terminal tab
+            "isBackground": true,
+            "problemMatcher": [],
+            // Create the tasks in a terminal group
+            "presentation": {
+                "group": "WebDev"
+            }
+        },
+        {
+            "label": "Frontend",
+            "type": "shell",
+            "command": "cd frontend && yarn && yarn dev",
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "group": "WebDev"
+            }
+        },
+        {
+            "label": "Terminal",
+            "type": "shell",
+            "command": "echo \"Welcome to Profertis! On your right to this terminal, there are 4 tabs: \n\nBackend (deno) and Frontend (sveltekit)\nScratchpad & Database for SurrealQL\n\nNo installation necessary, have fun!\" && bash",
+            "isBackground": true,
+            "problemMatcher": [],
+            "presentation": {
+                "focus": true,
+                "group": "Main"
+            }
+        }
+    ]
+}
