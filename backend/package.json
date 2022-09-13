@@ -1,0 +1,17 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for profertis",
+  "main": "dist/index.ts",
+  "repository": "https://github.com/profertis/profertis",
+  "author": "LeoDog896, CoasterFan5, willuhm-js",
+  "license": "GPL-v3",
+  "private": false,
+  "scripts": {
+    "build": "tsc",
+    "dev": "yarn build && node dist/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.8.3"
+  }
+}
