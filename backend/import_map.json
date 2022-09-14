@@ -1,9 +1,0 @@
-{
-    "imports": {
-        "/": "./",
-        "./": "./",
-        "log": "https://deno.land/std@0.155.0/log/mod.ts",
-        "surreal": "https://deno.land/x/surrealdb@v0.2.0/mod.ts",
-        "oak": "https://deno.land/x/oak@v11.1.0/mod.ts"
-    }
-}

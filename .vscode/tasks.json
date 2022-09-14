@@ -11,7 +11,7 @@
         {
             "label": "Create terminals",
             "dependsOn": [
-                "Backend",
+                "Setup",
                 "Frontend",
                 "Scratchpad",
                 "Database Logs",
@@ -39,10 +39,10 @@
         },
         {
             // The name that shows up in terminal tab
-            "label": "Backend",
+            "label": "Setup",
             // The task will launch a shell
             "type": "shell",
-            "command": "cd backend && deno task dev",
+            "command": "cd cli && deno task dev",
             // Mark as a background task to avoid the spinner animation on the terminal tab
             "isBackground": true,
             "problemMatcher": [],
@@ -64,7 +64,7 @@
         {
             "label": "Terminal",
             "type": "shell",
-            "command": "echo \"Welcome to Profertis! On your right to this terminal, there are 3 tabs: \n\nBackend (deno), Frontend (sveltekit) & Database for SurrealQL\n\nNo installation necessary, have fun!\nYou can also enable a scratchpad (./surreal/scratchpad.sh)\" && bash",
+            "command": "echo \"Welcome to Profertis! On your right to this terminal, there are 3 tabs: \n\nCLI (deno), Frontend (sveltekit) & Database for SurrealQL\n\nNo installation necessary, have fun!\nYou can also enable a scratchpad (./surreal/scratchpad.sh)\" && bash",
             "isBackground": true,
             "problemMatcher": [],
             "presentation": {
