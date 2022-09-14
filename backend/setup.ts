@@ -25,7 +25,6 @@ const permissisons: string[] = [`DEFINE TABLE course SCHEMALESS
             OR $auth.admin = true
             /* And they must be in the same school */
             AND school = $auth.school,
-        FOR create, delete, update WHERE $auth.admin = true
-;`]
+        FOR create, delete, update WHERE $auth.admin = true;`]
 
 export const queries: string[] = [...scopes, ...permissisons]
