@@ -17,17 +17,15 @@ const scopes: string[] = [
 ;`]
 
 const permissisons: string[] = [`DEFINE TABLE course SCHEMALESS
-	PERMISSIONS
-		FOR select
-			/* Published classes can be selected */
-			WHERE public = true
+    PERMISSIONS
+        FOR select
+            /* Published classes can be selected */
+            WHERE public = true
             /* Admins however can see all posts */
-			OR $auth.admin = true
+            OR $auth.admin = true
             /* And they must be in the same school */
-            AND school = $auth.school
-		FOR create, update, delete
-            /* Admins can create, update, and delete courses. */
-			WHERE $auth.admin = true
+            AND school = $auth.school,
+        FOR create, delete, update WHERE $auth.admin = true
 ;`]
 
 export const queries: string[] = [...scopes, ...permissisons]

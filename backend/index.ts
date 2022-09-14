@@ -22,7 +22,7 @@ async function main() {
     log.debug("Using profertis/profertis");
 
     for (const query of queries) {
-        await db.query(query.replaceAll("\n", " "), {})
+        await db.query(query.replaceAll("\n", " ").replace("	", " "), {})
     }
 }
 
