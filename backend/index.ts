@@ -1,43 +1,29 @@
-import Surreal from "https://deno.land/x/surrealdb@v0.2.0/mod.ts";
+import Surreal from "surreal";
+import * as log from "log";
 import "./router.ts"
+import { queries } from "./setup.ts";
 
-const db = new Surreal('http://127.0.0.1:8000/rpc', {});
+const db = new Surreal('http://localhost:8000/rpc', {});
 
 async function main() {
-    console.log("Logging in...")
+    log.debug("Logging in...")
     await db.signin({
         user: 'root',
         pass: 'root',
     });
 
-    console.log("Logged in to SurrealDB.")
+    await db.wait();
     
+    log.debug("Logged in to SurrealDB.")
+
     // Select a specific namespace / database
 	await db.use('profertis', 'profertis');
 
-    // Create a new person with a random id
-    let created = await db.create("person", {
-        title: 'Founder & CEO',
-        name: {
-            first: 'Tobie',
-            last: 'Morgan Hitchcock',
-        },
-        marketing: true,
-        identifier: Math.random().toString(36).substr(2, 10),
-    });
+    log.debug("Using profertis/profertis");
 
-    // Update a person record with a specific id
-    let updated = await db.change("person:jaime", {
-        marketing: true,
-    });
-
-    // Select all people records
-    let people = await db.select("person");
-
-    // Perform a custom advanced query
-    let groups = await db.query('SELECT marketing, count() FROM type::table(tb) GROUP BY marketing', {
-        tb: 'person',
-    });
+    for (const query of queries) {
+        await db.query(query.replaceAll("\n", " "), {})
+    }
 }
 
 main();

@@ -34,17 +34,7 @@
             "isBackground": true,
             "problemMatcher": [],
             "presentation": {
-                "group": "Database"
-            }
-        },
-        {
-            "label": "Scratchpad",
-            "type": "shell",
-            "command": "echo \"SurrealDB scratchpad. Learn more about SurrealQL at https://surrealdb.com/docs/surrealql\" && cd surreal && ./scratchpad.sh",
-            "isBackground": true,
-            "problemMatcher": [],
-            "presentation": {
-                "group": "Database"
+                "group": "WebDev"
             }
         },
         {
@@ -74,7 +64,7 @@
         {
             "label": "Terminal",
             "type": "shell",
-            "command": "echo \"Welcome to Profertis! On your right to this terminal, there are 4 tabs: \n\nBackend (deno) and Frontend (sveltekit)\nScratchpad & Database for SurrealQL\n\nNo installation necessary, have fun!\" && bash",
+            "command": "echo \"Welcome to Profertis! On your right to this terminal, there are 3 tabs: \n\nBackend (deno), Frontend (sveltekit) & Database for SurrealQL\n\nNo installation necessary, have fun!\nYou can also enable a scratchpad (./surreal/scratchpad.sh)\" && bash",
             "isBackground": true,
             "problemMatcher": [],
             "presentation": {
