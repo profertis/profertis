@@ -55,7 +55,7 @@ async function prompt(database: Surreal) {
       const school = await Input.prompt("School Name?");
 
       await database.query(
-        "CREATE type::thing('school', $school) SET district = type::thing('district', $district)",
+        "CREATE school SET district = type::thing('district', $district)",
         {
           school,
           district,
