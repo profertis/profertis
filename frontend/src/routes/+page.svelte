@@ -34,7 +34,7 @@
 				<h1 class="card-title mb-4">Login</h1>
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
-					<input type="text" class="form-control" bind:value={username} id="username" required aria-required="true"/>
+					<input type="text" class="form-control" bind:value={username} id="username" required aria-required="true" autocomplete="off"/>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Password</label>
@@ -48,26 +48,13 @@
 						<option value="admin">Administrator</option>
 					</select>
 				</div>
+				<div class="mb-3">
+					<label for="district" class="form-label">School</label>
+					<input type="text" class="form-control" bind:value={school} id="district" required aria-required="true" autocomplete="off"/>
+				</div>
 				<button class="btn btn-primary w-100" type="submit" on:click={login}>Login</button>
 			</div>
-			<div class="mb-3">
-				<label for="password" class="form-label">Password</label>
-				<input type="password" class="form-control" bind:value={password} id="password" required aria-required="true"/>
-			</div>
-			<div class="mb-3">
-				<label for="type" class="form-label">Role</label>
-				<select id="type" class="form-select" bind:value={scope} aria-label="Select your role" required aria-required="true">
-					<option selected value="student">Student</option>
-					<option value="teacher">Teacher</option>
-					<option value="admin">Administrator</option>
-				</select>
-			</div>
-			<div class="mb-3">
-				<label for="district" class="form-label">School</label>
-				<input type="text" class="form-control" bind:value={school} id="district" required aria-required="true" autocomplete="off"/>
-			</div>
-			<button class="btn btn-primary w-100" type="submit" on:click={login}>Login</button>
-		</div>
+		</form>
 	</div>
 </div>
 
