@@ -1,7 +1,26 @@
 <script lang="ts">
-	export let type: "student" | "teacher" | "admin" = "student"
-	export let username = "";
-	export let password = "";
+	export let type: 'student' | 'teacher' | 'admin' = 'student';
+	export let username = '';
+	export let password = '';
+
+	async function signin() {
+		try {
+			const Surreal = await import("surrealdb.js");
+			const db = new new Surreal("http://localhost:8000/rpc")
+
+			await db.signin({
+				NS: 'profertis',
+				DB: 'profertis',
+				SC: type,
+				username,
+				pass: password
+			})
+
+			alert("You're signed in!")
+		} catch (e) {
+			alert(e + "Failed signin!")
+		}
+	}
 </script>
 
 <div class="text-center d-flex align-items-center pt-5 pb-5 loginContainer">
@@ -9,6 +28,7 @@
 		<form>
 			<h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 			<div class="form-floating my-2">
+				<!-- TODO weird spacing above select -->
 				<select class="form-select" aria-label="Login Type" bind:value={type}>
 					<option selected value="student">Student</option>
 					<option value="teacher">Teacher</option>
@@ -16,7 +36,13 @@
 				</select>
 			</div>
 			<div class="form-floating">
-				<input bind:value={username} type="email" class="form-control" id="floatingInput" placeholder="User123" />
+				<input
+					bind:value={username}
+					type="email"
+					class="form-control"
+					id="floatingInput"
+					placeholder="User123"
+				/>
 				<label for="floatingInput">Username</label>
 			</div>
 			<div class="form-floating mb-5">
@@ -29,7 +55,7 @@
 				/>
 				<label for="floatingPassword">Password</label>
 			</div>
-			<button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+			<button class="w-100 btn btn-lg btn-primary" type="submit" on:click={signin}>Sign in</button>
 			<p class="mt-5 mb-3 text-muted">Profertis © 2017–2022</p>
 		</form>
 	</main>

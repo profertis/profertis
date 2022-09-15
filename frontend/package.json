@@ -13,6 +13,7 @@
 		"format": "prettier --write ."
 	},
 	"devDependencies": {
+		"@esbuild-plugins/node-globals-polyfill": "^0.1.1",
 		"@playwright/test": "^1.25.0",
 		"@popperjs/core": "^2.11.5",
 		"@sveltejs/adapter-auto": "next",
@@ -26,7 +27,6 @@
 		"prettier": "^2.6.2",
 		"prettier-plugin-svelte": "^2.7.0",
 		"sass": "^1.53.0",
-		"surreal.js": "^0.4.20",
 		"surrealdb.js": "^0.3.1",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
