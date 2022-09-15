@@ -13,9 +13,7 @@
             "dependsOn": [
                 "Setup",
                 "Frontend",
-                "Scratchpad",
                 "Database Logs",
-                "Terminal"
             ],
             // Mark as the default build task so cmd/ctrl+shift+b will create them
             "group": {
@@ -59,17 +57,6 @@
             "problemMatcher": [],
             "presentation": {
                 "group": "WebDev"
-            }
-        },
-        {
-            "label": "Terminal",
-            "type": "shell",
-            "command": "echo \"Welcome to Profertis! On your right to this terminal, there are 3 tabs: \n\nCLI (deno), Frontend (sveltekit) & Database for SurrealQL\n\nNo installation necessary, have fun!\nYou can also enable a scratchpad (./surreal/scratchpad.sh)\" && bash",
-            "isBackground": true,
-            "problemMatcher": [],
-            "presentation": {
-                "focus": true,
-                "group": "Main"
             }
         }
     ]

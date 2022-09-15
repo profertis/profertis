@@ -69,10 +69,13 @@ async function prompt(database: Surreal) {
         DB: "profertis",
         SC: "admin",
         username: "superadmin",
-        pass: password
+        pass: password,
       });
 
-      console.log("Generated! Username: `superadmin` Password: " + password + ". Send this to the recipient.");
+      console.log(
+        "Generated! Username: `superadmin` Password: " + password +
+          ". Send this to the recipient.",
+      );
     } else {
       const name = await Input.prompt("District name?");
 
