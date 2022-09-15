@@ -2,6 +2,7 @@
 	export let type: 'student' | 'teacher' | 'admin' = 'student';
 	export let username = '';
 	export let password = '';
+	export let school = '';
 </script>
 
 <div class="d-flex align-items-center justify-content-center vh-100">
@@ -11,7 +12,7 @@
 			<form>
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
-					<input type="text" class="form-control" bind:value={username} id="username" required aria-required="true"/>
+					<input autocomplete="off" type="text" class="form-control" bind:value={username} id="username" required aria-required="true"/>
 				</div>
 				<div class="mb-3">
 					<label for="password" class="form-label">Password</label>
@@ -24,6 +25,10 @@
 						<option value="teacher">Teacher</option>
 						<option value="admin">Administrator</option>
 					</select>
+				</div>
+				<div class="mb-3">
+					<label for="district" class="form-label">School</label>
+					<input type="text" class="form-control" bind:value={school} id="district" required aria-required="true" autocomplete="off"/>
 				</div>
 				<button class="btn btn-primary w-100" type="submit">Login</button>
 			</form>
