@@ -27,6 +27,7 @@
 		"prettier-plugin-svelte": "^2.7.0",
 		"sass": "^1.53.0",
 		"surreal.js": "^0.4.20",
+		"surrealdb.js": "^0.3.1",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.7",
