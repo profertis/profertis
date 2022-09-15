@@ -22,7 +22,19 @@ function getRandomString(s: number) {
 
 async function applyDefaultQueries(database: Surreal) {
   for (const query of queries) {
-    await database.query(query.replaceAll("\n", " ").replace("	", " "), {});
+    const queryBits = query.split(";")
+      .map((queryBit) => queryBit.trim())
+      .filter((queryBit) => queryBit.length !== 0)
+      .map((queryBit) => queryBit.replaceAll("\n", " ").replace("	", " "));
+    for (const queryBit of queryBits) {
+      try {
+        await database.query(queryBit, {});
+      } catch (e) {
+        console.log(queryBit);
+        console.error(e);
+        Deno.exit();
+      }
+    }
   }
 }
 
