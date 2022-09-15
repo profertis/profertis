@@ -42,7 +42,7 @@
             "label": "Setup",
             // The task will launch a shell
             "type": "shell",
-            "command": "cd cli && deno task dev",
+            "command": "cd cli && deno task start",
             // Mark as a background task to avoid the spinner animation on the terminal tab
             "isBackground": true,
             "problemMatcher": [],
