@@ -12,6 +12,11 @@ export async function GET({ url }) {
   if (!password) throw error(400, 'a password must be specified')
   const scope = url.searchParams.get('scope');
   if (!scope) throw error(400, 'a scope must be specified')
+
+  // prevent other scopes from being used
+  if (scope !== "student" && scope !== "teacher" && scope !== "admin") {
+    throw error(400, 'a scope must be a student, teacher, or an admin')
+  }
  
   try {
     return new Response(await db.signin({
@@ -22,6 +27,6 @@ export async function GET({ url }) {
       pass: password,
     }))
   } catch {
-    throw error("401", "Invalid credentials")
+    throw error("401", "Invalid username, password, or scope")
   }
 }
