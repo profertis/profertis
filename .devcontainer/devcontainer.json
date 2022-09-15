@@ -20,6 +20,8 @@
 			"settings": { 
 				// Enables the project as a Deno project
 				"deno.enable": true,
+				// Enables Deno for certain paths
+				"deno.enablePaths": ["./cli"],
 				// Enables Deno linting for the project
 				"deno.lint": true
 			},
