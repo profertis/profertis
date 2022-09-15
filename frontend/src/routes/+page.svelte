@@ -32,7 +32,7 @@
 			<h1 class="card-title mb-4">Login</h1>
 			<div class="mb-3">
 				<label for="username" class="form-label">Username</label>
-				<input type="text" class="form-control" bind:value={username} id="username" required aria-required="true"/>
+				<input type="text" class="form-control" bind:value={username} id="username" required aria-required="true" autocomplete="off"/>
 			</div>
 			<div class="mb-3">
 				<label for="password" class="form-label">Password</label>
