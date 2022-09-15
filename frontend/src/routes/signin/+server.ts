@@ -3,7 +3,7 @@ import Surreal from "surrealdb.js"
 
 const db = new Surreal('http://127.0.0.1:8000/rpc');
 
-
+// TODO switch to POST & body
 /** @type {import('./$types').RequestHandler} */
 export async function GET({ url }) {
   const username = url.searchParams.get('user');
