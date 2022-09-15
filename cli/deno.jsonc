@@ -1,5 +1,5 @@
 {
-    "tasks": {
-        "dev": "deno run --watch --import-map=import_map.json --allow-net index.ts"
-    }
+  "tasks": {
+    "start": "deno run --unstable --watch --allow-net index.ts"
+  }
 }
