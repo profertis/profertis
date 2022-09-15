@@ -8,7 +8,8 @@
 			const response = await fetch("/signin", {
 				method: "POST",
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					"accept": "application/json"
 				},
 				body: JSON.stringify({
 					scope,
@@ -27,26 +28,28 @@
 <div class="d-flex align-items-center justify-content-center vh-100">
 	<div class="sliding-background"></div>
 	<div class="card w-30 p-3 rounded-4">
-		<div class="card-body">
-			<h1 class="card-title mb-4">Login</h1>
-			<div class="mb-3">
-				<label for="username" class="form-label">Username</label>
-				<input type="text" class="form-control" bind:value={username} id="username" required aria-required="true"/>
+		<form method="post" action="/login">
+			<div class="card-body">
+				<h1 class="card-title mb-4">Login</h1>
+				<div class="mb-3">
+					<label for="username" class="form-label">Username</label>
+					<input type="text" class="form-control" bind:value={username} id="username" required aria-required="true"/>
+				</div>
+				<div class="mb-3">
+					<label for="password" class="form-label">Password</label>
+					<input type="password" class="form-control" bind:value={password} id="password" required aria-required="true"/>
+				</div>
+				<div class="mb-3">
+					<label for="type" class="form-label">Role</label>
+					<select id="type" class="form-select" bind:value={scope} aria-label="Select your role" required aria-required="true">
+						<option selected value="student">Student</option>
+						<option value="teacher">Teacher</option>
+						<option value="admin">Administrator</option>
+					</select>
+				</div>
+				<button class="btn btn-primary w-100" type="submit" on:click={login}>Login</button>
 			</div>
-			<div class="mb-3">
-				<label for="password" class="form-label">Password</label>
-				<input type="password" class="form-control" bind:value={password} id="password" required aria-required="true"/>
-			</div>
-			<div class="mb-3">
-				<label for="type" class="form-label">Role</label>
-				<select id="type" class="form-select" bind:value={scope} aria-label="Select your role" required aria-required="true">
-					<option selected value="student">Student</option>
-					<option value="teacher">Teacher</option>
-					<option value="admin">Administrator</option>
-				</select>
-			</div>
-			<button class="btn btn-primary w-100" type="submit" on:click={login}>Login</button>
-		</div>
+		</form>
 	</div>
 </div>
 
