@@ -76,9 +76,7 @@
 </div>
 
 <style>
-	.w-30 {
-		width: 30%;
-	}
+	
 
 	.sliding-background {
 		position: fixed;
