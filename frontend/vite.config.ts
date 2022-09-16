@@ -1,6 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import type { UserConfig } from 'vite';
-import { NodeGlobalsPolyfillPlugin } from "@esbuild-plugins/node-globals-polyfill"
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
 
 const config: UserConfig = {
 	plugins: [sveltekit()],
@@ -11,8 +11,8 @@ const config: UserConfig = {
 			},
 			plugins: [
 				NodeGlobalsPolyfillPlugin({
-                    buffer: true
-                })
+					buffer: true
+				})
 			]
 		}
 	},

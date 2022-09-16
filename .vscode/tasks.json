@@ -52,7 +52,7 @@
         {
             "label": "Frontend",
             "type": "shell",
-            "command": "cd frontend && yarn && yarn dev",
+            "command": "cd frontend && yarn dev",
             "isBackground": true,
             "problemMatcher": [],
             "presentation": {
