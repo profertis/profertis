@@ -43,6 +43,18 @@
 					/>
 				</div>
 				<div class="mb-3">
+					<label for="district" class="form-label">School</label>
+					<input
+						type="text"
+						class="form-control"
+						bind:value={school}
+						id="district"
+						required
+						aria-required="true"
+						autocomplete="off"
+					/>
+				</div>
+				<div class="mb-3">
 					<label for="type" class="form-label">Role</label>
 					<select
 						id="type"
@@ -56,18 +68,6 @@
 						<option value="teacher">Teacher</option>
 						<option value="admin">Administrator</option>
 					</select>
-				</div>
-				<div class="mb-3">
-					<label for="district" class="form-label">School</label>
-					<input
-						type="text"
-						class="form-control"
-						bind:value={school}
-						id="district"
-						required
-						aria-required="true"
-						autocomplete="off"
-					/>
 				</div>
 				<button class="btn btn-primary w-100" type="submit">Login</button>
 			</div>
