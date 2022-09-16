@@ -1,19 +1,5 @@
 $blue: #2f6c9c;
 $white: #f0f1f5;
-$utilities: (
-    "width": (
-      property: width,
-      class: w,
-      values: (
-        25: 25%,
-        30: 30%,
-        50: 50%,
-        75: 75%,
-        100: 100%,
-        auto: auto
-      )
-    )
-);
 /* Variables and mixins declared here will be available in all other SCSS files */
 @import 'bootstrap/scss/functions'; /* Override Bootstrap's variables here */
 @import 'bootstrap/scss/variables';
