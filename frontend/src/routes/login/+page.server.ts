@@ -4,11 +4,11 @@ import Surreal from 'surrealdb.js';
 const db = new Surreal('http://127.0.0.1:8000/rpc');
 
 export const actions: Actions = {
-	default: async ({ request, cookies, url }) => {
+	default: async ({ request, cookies }) => {
 		const data = await request.formData();
 		const username = data.get('username');
 		const password = data.get('password');
-		const scope = data.get('type');
+		const scope = data.get('scope');
 		if (!username) return invalid(400, { username, missing: true });
 		if (!password) return invalid(400, { password, missing: true });
 		if (!scope) return invalid(400, { scope, missing: true });
@@ -36,11 +36,7 @@ export const actions: Actions = {
 		} catch {
 			return { invalid: true, username };
 		}
-
-		if (url.searchParams.has('redirectTo')) {
-			throw redirect(303, url.searchParams.get('redirectTo') ?? "");
-		}
-
-		return { success: true }
+		
+		throw redirect(303, "/dashboard");
 	}
 };

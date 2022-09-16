@@ -1,23 +1,26 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { flash } from "$lib/flash"
 
 	export let scope: 'student' | 'teacher' | 'admin' = 'student';
 	export let username = '';
 	export let password = '';
 	export let school = '';
 
-	export let form: { invalid?: boolean } | null = null;
+	// can either be null, form.invalid = true, form.missing = true & form.(username | password | scope) = null
+	export let form: { invalid?: boolean, missing?: boolean, username?: null, password?: null, scope?: null } | null = null;
 </script>
 
 <div class="d-flex align-items-center justify-content-center vh-100">
 	<div class="sliding-background" />
 	<div class="card col-9 col-sm-6 col-lg-4 p-3 rounded-4">
-		<form method="POST" action="/login">
+		<form method="POST" action="" use:enhance>
 			<div class="card-body">
 				<h1 class="card-title mb-4">Login</h1>
 				{#if form?.invalid}
-					<!-- TODO fancy -->
-					<p>invalid username or password</p>
+					{#key form}
+						<p use:flash>invalid username or password</p>
+					{/key}
 				{/if}
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
@@ -25,6 +28,7 @@
 						type="text"
 						class="form-control"
 						bind:value={username}
+						name="username"
 						id="username"
 						required
 						aria-required="true"
@@ -38,17 +42,19 @@
 						class="form-control"
 						bind:value={password}
 						id="password"
+						name="password"
 						required
 						aria-required="true"
 					/>
 				</div>
 				<div class="mb-3">
-					<label for="district" class="form-label">School</label>
+					<label for="school" class="form-label">School</label>
 					<input
 						type="text"
 						class="form-control"
 						bind:value={school}
-						id="district"
+						id="school"
+						name="school"
 						required
 						aria-required="true"
 						autocomplete="off"
@@ -62,6 +68,7 @@
 						bind:value={scope}
 						aria-label="Select your role"
 						required
+						name="scope"
 						aria-required="true"
 					>
 						<option selected value="student">Student</option>
