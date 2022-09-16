@@ -1,5 +1,9 @@
 // SurrealDB setup queries for a fresh database + auth
 
+// TODO: Students can be in multiple schools
+// TODO: Course history
+// TODO: Requirements for previous courses
+
 // What is this? Why this setup? https://github.com/surrealdb/surrealdb/issues/90 Until this is fixed, each query has to be passed individually.
 const scopes = `
 /* We're declaring scopes for (admin, teacher, and student) with the same 1d user and pass auth system */
