@@ -12,7 +12,7 @@
 <div class="d-flex align-items-center justify-content-center vh-100">
 	<div class="sliding-background" />
 	<div class="card w-30 p-3 rounded-4">
-		<form method="post" action="/login">
+		<form method="POST" action="/login">
 			<div class="card-body">
 				<h1 class="card-title mb-4">Login</h1>
 				{#if form?.invalid}

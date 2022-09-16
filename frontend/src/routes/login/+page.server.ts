@@ -1,23 +1,21 @@
-import { invalid, redirect, json, type Actions } from '@sveltejs/kit';
+import { invalid, redirect, type Actions } from '@sveltejs/kit';
 import Surreal from 'surrealdb.js';
 
 const db = new Surreal('http://127.0.0.1:8000/rpc');
 
 export const actions: Actions = {
-	default: async ({ request, cookies }) => {
+	default: async ({ request, cookies, url }) => {
 		const data = await request.formData();
-		const { username, password, scope } = {
-			username: data.get('username'),
-			password: data.get('password'),
-			scope: data.get('scope')
-		};
-		if (!username) throw invalid(400, { username, missing: true });
-		if (!password) throw invalid(400, { password, missing: true });
-		if (!scope) throw invalid(400, { scope, missing: true });
+		const username = data.get('username');
+		const password = data.get('password');
+		const scope = data.get('type');
+		if (!username) return invalid(400, { username, missing: true });
+		if (!password) return invalid(400, { password, missing: true });
+		if (!scope) return invalid(400, { scope, missing: true });
 
 		// prevent other scopes from being used
 		if (scope !== 'student' && scope !== 'teacher' && scope !== 'admin') {
-			throw invalid(400, {
+			return invalid(400, {
 				scope,
 				invalid: true,
 				message: 'a scope must be a student, teacher, or an admin'
@@ -36,9 +34,13 @@ export const actions: Actions = {
 				})
 			);
 		} catch {
-			return json({ invalid: true, username });
+			return { invalid: true, username };
 		}
 
-		throw redirect(302, '/dashboard');
+		if (url.searchParams.has('redirectTo')) {
+			throw redirect(303, url.searchParams.get('redirectTo') ?? "");
+		}
+
+		return { success: true }
 	}
 };
