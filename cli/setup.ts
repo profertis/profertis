@@ -6,11 +6,11 @@
 
 const schemaish = `
 
-DEFINE FIELD name ON TABLE district TYPE string;
-
+DEFINE FIELD name ON TABLE district TYPE string ASSERT is::ascii($value);
+DEFINE INDEX name ON TABLe district COLUMNS name UNIQUE;
 
 DEFINE FIELD district ON TABLE school TYPE record (district);
-
+DEFINE INDEX name ON TABLE school COLUMNS name UNIQUE;
 
 DEFINE FIELD name ON TABLE course TYPE string;
 DEFINE FIELD school ON TABLE course TYPE record (school);
@@ -48,42 +48,42 @@ DEFINE SCOPE student SESSION 1d
   SIGNIN ( SELECT * FROM student WHERE username = $username AND crypto::argon2::compare(password, $password) );`;
 
 const permissisons = `
-DEFINE TABLE course SCHEMALESS
+DEFINE TABLE course SCHEMAFULL
   PERMISSIONS
     FOR select
         /* Published classes can be selected */
         WHERE (public = true
         /* Admins and teachers however can see all courses */
-        OR ($auth.admin = true OR $auth.teacher = true))
+        OR ($scope = "admin" OR $scope = "teacher"))
         /* And they must be in the same school */
         AND school = $auth.school,
-    FOR create, delete, update WHERE $auth.admin = true;
+    FOR create, delete, update WHERE $scope = "admin";
 
-DEFINE TABLE school
+DEFINE TABLE school SCHEMAFULL
   PERMISSIONS
     FOR select WHERE true;
 
-DEFINE TABLE student
+DEFINE TABLE student SCHEMAFULL
   PERMISSIONS
     FOR select
         /* Users can see their own account */
         WHERE id = $auth.id
         /* Admins and teachers however can see all accounts */
-        OR ($auth.admin = true OR $auth.teacher = true),
-    FOR create, delete, update WHERE $auth.admin = true;
+        OR ($scope = "admin" OR $scope = "teacher"),
+    FOR create, delete, update WHERE $scope = "admin";
 
-DEFINE TABLE teacher
+DEFINE TABLE teacher SCHEMAFULL
   PERMISSIONS
-    FOR select WHERE ($auth.admin = true OR $auth.teacher = true),
-    FOR create, delete, update WHERE $auth.admin = true;
-DEFINE TABLE admin
+    FOR select WHERE ($scope = "admin" OR $scope = "teacher"),
+    FOR create, delete, update WHERE $scope = "admin";
+DEFINE TABLE admin SCHEMAFULL
   PERMISSIONS
-    FOR select WHERE ($auth.admin = true OR $auth.teacher = true),
-    FOR create, delete, update WHERE $auth.admin = true;
+    FOR select WHERE ($scope = "admin" OR $scope = "teacher"),
+    FOR create, delete, update WHERE $scope = "admin";
 
 DEFINE FIELD password ON student TYPE string PERMISSIONS NONE;
 DEFINE FIELD password ON teacher TYPE string PERMISSIONS NONE;
 DEFINE FIELD password ON admin TYPE string PERMISSIONS NONE;
 `;
 
-export const queries: string[] = [schemaish, scopes, permissisons];
+export const queries: string[] = [permissisons, schemaish, scopes];

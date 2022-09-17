@@ -5,10 +5,10 @@ const rootDB = new Surreal('http://127.0.0.1:8000/rpc');
 
 rootDB.signin({ user: 'root', pass: 'root' })
 
-export const load = async function({ params }) {
-	await rootDB.select("school")
+rootDB.use("profertis", "profertis")
 
-	return { schools: [] }
+export const load = async function({ params }) {
+	return { schools: ["school"] }
 }
 
 const db = new Surreal('http://127.0.0.1:8000/rpc');

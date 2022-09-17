@@ -51,7 +51,7 @@ async function prompt(database: Surreal) {
     });
 
     if (type == "school") {
-      const districts = await database.select("district");
+      const districts = (await database.query("SELECT name FROM district", {}))[0].result.map(record => record.name);
       if (districts.length === 0) {
         console.log("No districts found. Create one first!");
         prompt(database);
@@ -59,9 +59,7 @@ async function prompt(database: Surreal) {
 
       const district = await Select.prompt({
         message: "District?",
-        options: districts.map((district: { id: string }) => district.id).map((
-          id: string,
-        ) => id.split(":")[1]),
+        options: districts,
       });
 
       const school = await Input.prompt("School Name?");
@@ -86,13 +84,12 @@ async function prompt(database: Surreal) {
       });
 
       console.log(
-        "Generated! Username: `superadmin` Password: " + password +
-          " | Send this to the recipient.",
+        `Generated! Username:'${username}' Password: ${password} | Send this to the recipient.`,
       );
     } else {
       const name = await Input.prompt("District name?");
 
-      await database.query("CREATE district SET name = $name;", name);
+      await database.query("CREATE district SET name = <string> $name;", { name });
 
       console.log("Created district " + name + "!");
     }
@@ -102,9 +99,11 @@ async function prompt(database: Surreal) {
       options: ["district", "school"],
     });
 
-    const records = await database.select(type);
-
-    console.log(records);
+    if (type == "district") {
+      console.log((await db.query("SELECT name FROM district", {}))[0].result.map(record => record.name).join(", "))
+    } else {
+      console.log((await db.query("SELECT name FROM school", {}))[0].result.map(record => record.name).join(", "))
+    }
   } else if (action == "schema") {
     await applyDefaultQueries(database);
   }

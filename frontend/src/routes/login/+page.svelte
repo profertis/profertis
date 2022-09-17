@@ -1,11 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { flash } from "$lib/flash"
-
-	export let scope: 'student' | 'teacher' | 'admin' = 'student';
-	export let username = '';
-	export let password = '';
-	export let school = '';
+	
+	/** @type {import('./$types').PageData} */
+	export let data: { schools: string[] } = { schools: []};
 
 	// can either be null, form.invalid = true, form.missing = true & form.(username | password | scope) = null
 	export let form: { invalid?: boolean, missing?: boolean, username?: null, password?: null, scope?: null } | null = null;
@@ -27,7 +25,6 @@
 					<input
 						type="text"
 						class="form-control"
-						bind:value={username}
 						name="username"
 						id="username"
 						required
@@ -40,7 +37,6 @@
 					<input
 						type="password"
 						class="form-control"
-						bind:value={password}
 						id="password"
 						name="password"
 						required
@@ -49,23 +45,27 @@
 				</div>
 				<div class="mb-3">
 					<label for="school" class="form-label">School</label>
-					<input
-						type="text"
-						class="form-control"
-						bind:value={school}
+					<select
 						id="school"
-						name="school"
+						class="form-select"
+						aria-label="Select your school"
 						required
+						name="school"
 						aria-required="true"
-						autocomplete="off"
-					/>
+					>
+						
+					<option selected value="none">None Selected</option>
+						{#each data.schools as school}
+							<!-- TODO add verification that the school isn't none. If you dont know how to do this leave a noSchool: boolean variable -->
+							<option value={school}>{school}</option>
+						{/each}
+					</select>
 				</div>
 				<div class="mb-3">
 					<label for="type" class="form-label">Role</label>
 					<select
 						id="type"
 						class="form-select"
-						bind:value={scope}
 						aria-label="Select your role"
 						required
 						name="scope"
