@@ -1,6 +1,16 @@
 import { invalid, redirect, type Actions } from '@sveltejs/kit';
 import Surreal from 'surrealdb.js';
 
+const rootDB = new Surreal('http://127.0.0.1:8000/rpc');
+
+rootDB.signin({ user: 'root', pass: 'root' })
+
+export const load = async function({ params }) {
+	await rootDB.select("school")
+
+	return { schools: [] }
+}
+
 const db = new Surreal('http://127.0.0.1:8000/rpc');
 
 export const actions: Actions = {
@@ -31,10 +41,13 @@ export const actions: Actions = {
 					SC: scope,
 					username,
 					pass: password
-				})
+				}),
+				{
+					path: "/"
+				}
 			);
 		} catch {
-			return { invalid: true, username };
+			return invalid(400, { scope });
 		}
 		
 		throw redirect(303, "/dashboard");

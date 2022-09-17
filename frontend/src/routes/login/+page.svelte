@@ -19,7 +19,7 @@
 				<h1 class="card-title mb-4">Login</h1>
 				{#if form?.invalid}
 					{#key form}
-						<p use:flash>invalid username or password</p>
+						<p use:flash>invalid username, password, or scope</p>
 					{/key}
 				{/if}
 				<div class="mb-3">

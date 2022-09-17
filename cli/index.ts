@@ -74,14 +74,15 @@ async function prompt(database: Surreal) {
         },
       );
 
+      const username = "superadmin"
       const password = getRandomString(32); // we'll randomly generate a password and allow the admin to change it later on.
 
       await database.signup({
         NS: "profertis",
         DB: "profertis",
         SC: "admin",
-        username: "superadmin",
-        pass: password,
+        username,
+        password,
       });
 
       console.log(
@@ -91,7 +92,7 @@ async function prompt(database: Surreal) {
     } else {
       const name = await Input.prompt("District name?");
 
-      await database.create("district:" + name, {});
+      await database.query("CREATE district SET name = $name;", name);
 
       console.log("Created district " + name + "!");
     }
