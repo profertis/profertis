@@ -1,11 +1,21 @@
 // SurrealDB setup queries for a fresh database + auth
 
-// TODO: Course history
 // TODO: Requirements for previous courses
 
 // What is this? Why this setup? https://github.com/surrealdb/surrealdb/issues/90 Until this is fixed, each query has to be passed individually.
 
 const schemaish = `
+
+DEFINE FIELD name ON TABLE district TYPE string;
+
+
+DEFINE FIELD district ON TABLE school TYPE record (district);
+
+
+DEFINE FIELD name ON TABLE course TYPE string;
+DEFINE FIELD school ON TABLE course TYPE record (school);
+DEFINE FIELD requirements ON TABLE course TYPE array;
+DEFINE FIELD requirements.* ON TABLE course TYPE record (course);
 
 DEFINE FIELD school ON TABLE student TYPE array;
 DEFINE FIELD school ON TABLE teacher TYPE array;
@@ -15,13 +25,14 @@ DEFINE FIELD school.* ON TABLE student TYPE record (school);
 DEFINE FIELD school.* ON TABLE teacher TYPE record (school);
 DEFINE FIELD school.* ON TABLE admin TYPE record (school);
 
+
 DEFINE FIELD past_courses ON TABLE student TYPE array;
-DEFINE FIELD past_courses.* ON TABLE student TYPE record (course);
+DEFINE FIELD past_courses.*.course ON TABLE student TYPE record (course);
+DEFINE FIELD past_courses.*.grade ON TABLE student TYPE decimal;
 
 DEFINE FIELD courses ON TABLE student TYPE array;
-DEFINE FIELD courses.* ON TABLE student TYPE record (course);
-
-DEFINE FIELD name ON TABLE course TYPE string;
+DEFINE FIELD courses.*.course ON TABLE student TYPE record (course);
+DEFINE FIELD courses.*.grade ON TABLE student TYPE decimal;
 `
 
 const scopes = `
