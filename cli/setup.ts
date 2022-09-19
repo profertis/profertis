@@ -1,11 +1,8 @@
 // SurrealDB setup queries for a fresh database + auth
 
-// TODO: Requirements for previous courses
-
 // What is this? Why this setup? https://github.com/surrealdb/surrealdb/issues/90 Until this is fixed, each query has to be passed individually.
 
 const schemaish = `
-
 DEFINE FIELD name ON TABLE district TYPE string ASSERT is::ascii($value);
 DEFINE INDEX name ON TABLe district COLUMNS name UNIQUE;
 
@@ -69,16 +66,16 @@ DEFINE TABLE student SCHEMAFULL
         /* Users can see their own account */
         WHERE id = $auth.id
         /* Admins and teachers however can see all accounts */
-        OR ($scope = "admin" OR $scope = "teacher"),
+        OR (($scope = "admin" OR $scope = "teacher") AND school = $auth.school),
     FOR create, delete, update WHERE $scope = "admin";
 
 DEFINE TABLE teacher SCHEMAFULL
   PERMISSIONS
-    FOR select WHERE ($scope = "admin" OR $scope = "teacher"),
+    FOR select WHERE ($scope = "admin" OR $scope = "teacher") AND school = $auth.school,
     FOR create, delete, update WHERE $scope = "admin";
 DEFINE TABLE admin SCHEMAFULL
   PERMISSIONS
-    FOR select WHERE ($scope = "admin" OR $scope = "teacher"),
+    FOR select WHERE ($scope = "admin" OR $scope = "teacher") AND school = $auth.school,
     FOR create, delete, update WHERE $scope = "admin";
 
 DEFINE FIELD password ON student TYPE string PERMISSIONS NONE;
