@@ -84,6 +84,19 @@ DEFINE TABLE admin SCHEMAFULL
 DEFINE FIELD password ON student TYPE string PERMISSIONS NONE;
 DEFINE FIELD password ON teacher TYPE string PERMISSIONS NONE;
 DEFINE FIELD password ON admin TYPE string PERMISSIONS NONE;
+
+DEFINE FIELD username ON student TYPE string
+  PERMISSIONS
+    FOR select WHERE id = $auth.id OR ($scope = "admin" AND school = $auth.school),
+    FOR update WHERE school = $auth.school AND (id = $auth.id OR $scope = "admin");
+DEFINE FIELD username ON teacher TYPE string
+  PERMISSIONS
+    FOR select WHERE id = $auth.id OR ($scope = "admin" AND school = $auth.school),
+    FOR update WHERE school = $auth.school AND (id = $auth.id OR $scope = "admin");
+DEFINE FIELD username ON admin TYPE string
+  PERMISSIONS
+    FOR select WHERE id = $auth.id OR ($scope = "admin" AND school = $auth.school),
+    FOR update WHERE school = $auth.school AND (id = $auth.id OR $scope = "admin");
 `;
 
 export const queries: string[] = [permissisons, schemaish, scopes];

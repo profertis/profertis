@@ -2,22 +2,21 @@
 	import { enhance } from '$app/forms';
 	import { flash } from "$lib/flash"
 	
-	/** @type {import('./$types').PageData} */
-	export let data: { schools: string[] } = { schools: []};
+	export let schools = ["school"];
 
 	// can either be null, form.invalid = true, form.missing = true & form.(username | password | scope) = null
-	export let form: { invalid?: boolean, missing?: boolean, username?: null, password?: null, scope?: null } | null = null;
+	export let form: { invalid?: boolean, missing?: boolean, username?: null, password?: null, scope?: null, message?: string } | null = null;
 </script>
 
 <div class="d-flex align-items-center justify-content-center vh-100">
 	<div class="sliding-background" />
 	<div class="card col-9 col-sm-6 col-lg-4 p-3 rounded-4">
-		<form method="POST" action="" use:enhance>
+		<form method="POST">
 			<div class="card-body">
 				<h1 class="card-title mb-4">Login</h1>
 				{#if form?.invalid}
 					{#key form}
-						<p use:flash>invalid username, password, or scope</p>
+						<p use:flash>{form?.message}</p>
 					{/key}
 				{/if}
 				<div class="mb-3">
@@ -55,8 +54,8 @@
 					>
 						
 					<option selected value="none">None Selected</option>
-						{#each data.schools as school}
-							<!-- TODO add verification that the school isn't none. If you dont know how to do this leave a noSchool: boolean variable -->
+						{#each schools as school}
+							<!-- TODO add client-side hint that the school isn't none. If you dont know how to do this leave a noSchool: boolean variable -->
 							<option value={school}>{school}</option>
 						{/each}
 					</select>

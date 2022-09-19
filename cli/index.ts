@@ -7,25 +7,18 @@ import { queries } from "./setup.ts";
 
 const db = new Surreal("http://localhost:8000/rpc", {});
 
-function getRandomString(s: number) {
-  if (s % 2 == 1) {
-    throw new Deno.errors.InvalidData("Only even sizes are supported");
-  }
-  const buf = new Uint8Array(s / 2);
-  crypto.getRandomValues(buf);
-  let ret = "";
-  for (let i = 0; i < buf.length; ++i) {
-    ret += ("0" + buf[i].toString(16)).slice(-2);
-  }
-  return ret;
+function getRandomString(len: number): string {
+  const arr = new Uint8Array((len || 40) / 2)
+  crypto.getRandomValues(arr)
+  return Array.from(arr, dec =>  dec.toString(16).padStart(2, "0")).join('')
 }
 
 async function applyDefaultQueries(database: Surreal) {
   for (const query of queries) {
     const queryBits = query.split(";")
-      .map((queryBit) => queryBit.trim())
-      .filter((queryBit) => queryBit.length !== 0)
-      .map((queryBit) => queryBit.replaceAll("\n", " ").replace("	", " "));
+      .map(queryBit => queryBit.trim())
+      .filter(queryBit => queryBit.length !== 0)
+      .map(queryBit => queryBit.replaceAll("\n", " ").replace("	", " "));
     for (const queryBit of queryBits) {
       try {
         await database.query(queryBit, {});
