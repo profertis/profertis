@@ -4,7 +4,7 @@
 
 const schemaish = `
 DEFINE FIELD name ON TABLE district TYPE string ASSERT is::ascii($value);
-DEFINE INDEX name ON TABLe district COLUMNS name UNIQUE;
+DEFINE INDEX name ON TABLE district COLUMNS name UNIQUE;
 
 DEFINE FIELD district ON TABLE school TYPE record (district);
 DEFINE INDEX name ON TABLE school COLUMNS name UNIQUE;
