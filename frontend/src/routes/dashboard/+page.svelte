@@ -27,14 +27,14 @@
     <div class="sliding-background" />
         <div class="card col-6 p-3 rounded-4">
         <form>
-            <input class="form-control" required placeholder="Select Course"/>
-            <input class="form-control" required placeholder="Select Course"/>
-            <input class="form-control" required placeholder="Select Course"/>
-            <input class="form-control" required placeholder="Select Course"/>
-            <input class="form-control" required placeholder="Select Course"/>
-            <input class="form-control" required placeholder="Select Course"/>
-            <input class="form-control" required placeholder="Select Course"/>
-            <input class="form-control" required placeholder="Select Course"/>
+            <input class="form-control mb-3 mt-3" required placeholder="Select Course 1"/>
+            <input class="form-control mb-3" required placeholder="Select Course 2"/>
+            <input class="form-control mb-3" required placeholder="Select Course 3"/>
+            <input class="form-control mb-3" required placeholder="Select Course 4"/>
+            <input class="form-control mb-3" required placeholder="Select Course 5"/>
+            <input class="form-control mb-3" required placeholder="Select Course 6"/>
+            <input class="form-control mb-3" required placeholder="Select Course 7"/>
+            <input class="form-control mb-3" required placeholder="Select Course 8"/>
         </form>
     </div>
 </div>
