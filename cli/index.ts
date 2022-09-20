@@ -1,11 +1,19 @@
-import Surreal from "https://deno.land/x/surrealdb@v0.2.0/mod.ts";
+import Surreal, { Result } from "https://deno.land/x/surrealdb@v0.4.0/src/index.ts";
 import {
   Input,
   Select,
 } from "https://deno.land/x/cliffy@v0.25.1/prompt/mod.ts";
 import { queries } from "./setup.ts";
 
-const db = new Surreal("http://localhost:8000/rpc", {});
+interface School {
+  name: string;
+}
+
+interface District {
+  name: string;
+}
+
+const db = new Surreal("http://localhost:8000/rpc");
 
 function getRandomString(len: number): string {
   const arr = new Uint8Array((len || 40) / 2)
@@ -44,21 +52,23 @@ async function prompt(database: Surreal) {
     });
 
     if (type == "school") {
-      const districts = (await database.query("SELECT name FROM district", {}))[0].result.map(record => record.name);
-      if (districts.length === 0) {
+      const districts = (await database.query<Result<District[]>[]>("SELECT name FROM district", {}))[0].result;
+
+      if (!districts || districts.length === 0) {
         console.log("No districts found. Create one first!");
-        prompt(database);
+        await prompt(database);
+        return;
       }
 
       const district = await Select.prompt({
         message: "District?",
-        options: districts,
+        options: districts.map(record => record.name),
       });
 
       const school = await Input.prompt("School Name?");
 
       await database.query(
-        "CREATE school SET district = type::thing('district', $district)",
+        "CREATE school SET district = type::thing('district', $district), name = $school",
         {
           school,
           district,
@@ -93,9 +103,9 @@ async function prompt(database: Surreal) {
     });
 
     if (type == "district") {
-      console.log((await db.query("SELECT name FROM district", {}))[0].result.map(record => record.name).join(", "))
+      console.log((await db.query<Result<District[]>[]>("SELECT name FROM district", {}))[0].result?.map(record => record.name).join(", "))
     } else {
-      console.log((await db.query("SELECT name FROM school", {}))[0].result.map(record => record.name).join(", "))
+      console.log((await db.query<Result<School[]>[]>("SELECT name FROM school", {}))[0].result?.map(record => record.name).join(", "))
     }
   } else if (action == "schema") {
     await applyDefaultQueries(database);
