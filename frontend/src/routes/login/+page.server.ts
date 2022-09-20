@@ -37,7 +37,7 @@ export const actions: Actions = {
 				}
 			);
 		} catch {
-			return invalid(400, { scope, invalud: true, message: "invalid username, password, or scope" });
+			return invalid(400, { scope, invalid: true, message: "invalid username, password, or scope" });
 		}
 		
 		throw redirect(303, "/dashboard");
