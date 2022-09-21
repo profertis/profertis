@@ -23,19 +23,29 @@
     let courses: Course[] = []
 </script>
 
-<div class="d-flex align-items-center justify-content-center vh-100 bg-primary">
+<div class="d-flex align-items-center justify-content-center h-100 bg-primary">
     <div class="sliding-background" />
-        <div class="card col-6 p-3 rounded-4">
+    <div class="card col-9 mb-3 mt-3">
+        <div class="card-body p-3">
         <form>
-            <input class="form-control mb-3 mt-3" required placeholder="Select Course 1"/>
-            <input class="form-control mb-3" required placeholder="Select Course 2"/>
-            <input class="form-control mb-3" required placeholder="Select Course 3"/>
-            <input class="form-control mb-3" required placeholder="Select Course 4"/>
-            <input class="form-control mb-3" required placeholder="Select Course 5"/>
-            <input class="form-control mb-3" required placeholder="Select Course 6"/>
-            <input class="form-control mb-3" required placeholder="Select Course 7"/>
-            <input class="form-control mb-3" required placeholder="Select Course 8"/>
+            <h2 class="pb-2 border-bottom">Student Dashboard</h2>
+            <h3>Math</h3>
+            <input class="form-control mb-3" required placeholder="Select Math Course"/>
+            <h3>English</h3>
+            <input class="form-control mb-3" required placeholder="Select English Course"/>
+            <h3>Science</h3>
+            <input class="form-control mb-3" required placeholder="Select Science Course"/>
+            <h3>Social Studies</h3>
+            <input class="form-control mb-3" required placeholder="Select Social Studies Course"/>
+            <h3>Electives</h3>
+            <input class="form-control mb-3" required placeholder="Select Elective Course 1"/>
+            <input class="form-control mb-3" required placeholder="Select Elective Course 2"/>
+            <input class="form-control mb-3" required placeholder="Select Elective Course 3"/>
+            <input class="form-control mb-3" required placeholder="Select Elective Course 4"/>
+
+            <button type="submit" class="btn btn-primary w-100">Request Schedule Update</button>
         </form>
+    </div>
     </div>
 </div>
 
@@ -61,8 +71,4 @@
 			background-position: 0px 1600px;
 		}
 	}
-
-    .form-control {
-        border-radius: 0!important;
-    }
 </style>
