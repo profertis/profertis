@@ -1,6 +1,8 @@
 <script lang="ts">
     // TODO dynamic
     // key is a group
+    // TODO - do whatever you want with the design tristan, ill create one based off it
+    // there is something there you can work with though
     export let minClassesPerGroup: { [key: string]: number } = {} // dont worry about this err its not used
 
     interface Course {
