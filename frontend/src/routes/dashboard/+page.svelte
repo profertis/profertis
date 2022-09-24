@@ -30,21 +30,30 @@
     <div class="card col-9 mb-3 mt-3">
         <div class="card-body p-3">
         <form>
-            <h2 class="pb-2 border-bottom">Student Dashboard</h2>
-            <h3>Math</h3>
-            <input class="form-control mb-3" required placeholder="Select Math Course"/>
-            <h3>English</h3>
-            <input class="form-control mb-3" required placeholder="Select English Course"/>
-            <h3>Science</h3>
-            <input class="form-control mb-3" required placeholder="Select Science Course"/>
-            <h3>Social Studies</h3>
-            <input class="form-control mb-3" required placeholder="Select Social Studies Course"/>
+            <h2 class="pb-2 border-bottom m-3">Student Dashboard</h2>
+            <div class="category">
+                <h3>Math</h3>
+                <input class="form-control mb-3" required placeholder="Select Math Course"/>
+            </div>
+            <div class="category">
+                <h3>English</h3>
+                <input class="form-control mb-3" required placeholder="Select English Course"/>
+            </div>
+            <div class="category">
+                <h3>Science</h3>
+                <input class="form-control mb-3" required placeholder="Select Science Course"/>
+            </div>
+            <div class="category">
+                <h3>Social Studies</h3>
+                <input class="form-control mb-3" required placeholder="Select Social Studies Course"/>
+            </div>
+            <div class="category">
             <h3>Electives</h3>
-            <input class="form-control mb-3" required placeholder="Select Elective Course 1"/>
-            <input class="form-control mb-3" required placeholder="Select Elective Course 2"/>
-            <input class="form-control mb-3" required placeholder="Select Elective Course 3"/>
-            <input class="form-control mb-3" required placeholder="Select Elective Course 4"/>
-
+                <input class="form-control mb-3" required placeholder="Select Elective Course 1"/>
+                <input class="form-control mb-3" required placeholder="Select Elective Course 2"/>
+                <input class="form-control mb-3" required placeholder="Select Elective Course 3"/>
+                <input class="form-control mb-3" required placeholder="Select Elective Course 4"/>
+            </div>
             <button type="submit" class="btn btn-primary w-100">Request Schedule Update</button>
         </form>
     </div>
@@ -73,4 +82,12 @@
 			background-position: 0px 1600px;
 		}
 	}
+
+    .category {
+        background-color: #296089;
+        padding: 1rem;
+        margin: 1rem;
+        border-radius: 10px;
+        color: #f0f1f5
+    }
 </style>
