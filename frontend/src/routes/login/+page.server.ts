@@ -33,7 +33,8 @@ export const actions: Actions = {
 					password
 				}),
 				{
-					path: "/"
+					path: "/",
+					expires: new Date(new Date().getTime() + 1000 * 60 * 60 * 24)
 				}
 			);
 		} catch {

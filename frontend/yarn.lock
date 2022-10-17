@@ -176,12 +176,13 @@
     "@vercel/nft" "^0.22.0"
     esbuild "^0.15.7"
 
-"@sveltejs/kit@1.0.0-next.483":
-  version "1.0.0-next.483"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.483.tgz#fddbbdeb9804765f03bb95a2c5c00203df7c4792"
-  integrity sha512-0aiVdVJSy1kiK7xp4bw81qjDkErVaA6oIPlpbjsIYe2UYfeg3aRtST41b6XzLbyg61qLlHVGoM5WTLTIdLnbAQ==
+"@sveltejs/kit@1.0.0-next.484":
+  version "1.0.0-next.484"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.0.0-next.484.tgz#159d65be7d596ab9e49a59d52799e0983d6d6923"
+  integrity sha512-Y3l8OmlgmfJX3m081rMUZmmEQWHtiSsj3+YWYK/CQ4V99jqoztXPz/4cAxUt5mC45jVF5Ee9ykmh6GzkYjvfAQ==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^1.0.5"
+    "@types/cookie" "^0.5.1"
     cookie "^0.5.0"
     devalue "^3.1.2"
     kleur "^4.1.4"
@@ -205,6 +206,11 @@
     kleur "^4.1.5"
     magic-string "^0.26.3"
     svelte-hmr "^0.14.12"
+
+"@types/cookie@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@types/cookie/-/cookie-0.5.1.tgz#b29aa1f91a59f35e29ff8f7cb24faf1a3a750554"
+  integrity sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==
 
 "@types/json-schema@^7.0.9":
   version "7.0.11"
@@ -1160,6 +1166,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==
 
+isomorphic-ws@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/isomorphic-ws/-/isomorphic-ws-5.0.0.tgz#e5529148912ecb9b451b46ed44d53dae1ce04bbf"
+  integrity sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==
+
 js-sdsl@^4.1.4:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.1.4.tgz#78793c90f80e8430b7d8dc94515b6c77d98a26a6"
@@ -1316,11 +1327,6 @@ nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
-
-nanoid@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-4.0.0.tgz#6e144dee117609232c3f415c34b0e550e64999a5"
-  integrity sha512-IgBP8piMxe/gf73RTQx7hmnhwz0aaEXYakvqZyE302IXW3HyVNhdNGC+O2MwMAVhLEnvXlvKtGbtJf6wvHihCg==
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -1730,12 +1736,12 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-surrealdb.js@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/surrealdb.js/-/surrealdb.js-0.3.1.tgz#7216e7bb1fd626844a366c173f9f96c5245e11d3"
-  integrity sha512-qVd3xIaZ120KClGBe5WKDswwI2y7ZYjXfhI2F2eRvr1Uv9t/tz8tF0heqdDXXfPqqZA4S2GadEwjBkGSIRNBCw==
+surrealdb.js@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/surrealdb.js/-/surrealdb.js-0.4.0.tgz#c1b082f06e21c83b3dbf4361d3be9b1b3357d870"
+  integrity sha512-syE9rd3UNo8OrDP2cBdB7AdksJzjDT4ouWbZt8tjL/qCteY/TvIBNo6MdceBwMMyctsig7aap+1wNBpaTXz5Xg==
   dependencies:
-    nanoid "^4.0.0"
+    isomorphic-ws "^5.0.0"
     ws "^8.8.1"
   optionalDependencies:
     bufferutil "^4.0.6"
