@@ -12,6 +12,8 @@
         editable?: boolean;
     }
 
+    let submitted = false
+
     function addCourse() {
         // TODO use DB
         courses = [...courses, {
@@ -31,8 +33,11 @@
         <input class="list-group-item" value="Math Class" type="text"/>
         <input class="list-group-item" value="Math Class" type="text"/>
         <input class="list-group-item" value="Math Class" type="text"/>
-        <button class="btn btn-primary">Update Courses</button>
+        <button class="btn btn-primary" on:click={() => submitted = true}>Update Courses</button>
     </ul>
+    {#if submitted}
+        <p>Funny button</p>
+    {/if}
 </div>
 
 
